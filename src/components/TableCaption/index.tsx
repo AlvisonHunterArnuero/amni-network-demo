@@ -10,7 +10,7 @@ const TableCaption: React.FC = () => (
       <div className="basis-1/2">
         <button
           type="button"
-          className="float-end rounded p-2 px-3 text-sm text-[#143751] bg-[#BEE6E8] flex items-center justify-center space-x-2"
+          className="float-end rounded p-2 px-3 text-sm text-[#143751] bg-[#BEE6E8] hover:bg-[#143751] flex items-center justify-center space-x-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

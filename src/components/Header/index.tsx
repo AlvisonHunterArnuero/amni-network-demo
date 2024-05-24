@@ -46,21 +46,21 @@ const Header: React.FC = () => (
                     >
                         <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M1 1h15M1 7h15M1 13h15"
                         />
                     </svg>
                 </button>
                 <div className="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 bg-transparent dark:border-gray-700">
-                        {mnuItems.map((elem) => {
+                        {mnuItems.map((elem, ndx) => {
                             return (
-                                <li className="hover:text-white hover:border-b-2 hover:border-[#BEE6E8]">
+                                <li key={ndx} className="hover:text-white hover:border-b-2 hover:border-[#BEE6E8]">
                                     <a
                                         href="#"
-                                        className="block py-2 px-3 text-[#61737a] hover:text-white
+                                        className="block py-2 px-3 text-[#b9c3c4] hover:text-white
                                         bg-transparent text-sm font-light"
                                     >
                                         {elem}
