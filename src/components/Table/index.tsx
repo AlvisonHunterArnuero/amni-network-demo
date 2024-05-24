@@ -24,8 +24,9 @@ import sampleBottle from '../../assets/bottle.png'
 import { Data } from '../../CustomTypes';
 import { headCells, rows } from './tableData';
 import ToggleSwitch from '../ToggleSwitch';
-import CustomButton from '../CustomButton';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import Button from '@mui/material/Button';
+import ViewButton from '../ViewButton';
+import DropDown from '../DropDown';
 
 
 
@@ -266,10 +267,10 @@ export default function EnhancedTable() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
+            <Paper sx={{ width: '100%', mb: 2, overflow: 'hidden' }}>
                 <EnhancedTableToolbar numSelected={selected.length} />
-                <TableContainer>
-                    <Table
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader
                         sx={{ minWidth: 750 }}
                         aria-labelledby="tableTitle"
                         size={dense ? 'small' : 'medium'}
@@ -290,7 +291,12 @@ export default function EnhancedTable() {
                                 return (
                                     <TableRow
                                         hover
-                                        onClick={(event) => handleClick(event, row.sku as unknown as number)}
+                                        onClick={(event) =>
+                                            handleClick(
+                                                event,
+                                                row.sku as unknown as number,
+                                            )
+                                        }
                                         role="checkbox"
                                         aria-checked={isItemSelected}
                                         tabIndex={-1}
@@ -298,7 +304,10 @@ export default function EnhancedTable() {
                                         selected={isItemSelected}
                                         sx={{ cursor: 'pointer' }}
                                     >
-                                        <TableCell sx={{ marginLeft: '12px' }} padding="checkbox">
+                                        <TableCell
+                                            sx={{ marginLeft: '12px' }}
+                                            padding="checkbox"
+                                        >
                                             <Checkbox
                                                 color="primary"
                                                 checked={isItemSelected}
@@ -316,30 +325,51 @@ export default function EnhancedTable() {
                                         >
                                             {row.sku}
                                         </TableCell>
-                                        <TableCell align="center">{row.name}</TableCell>
-                                        <TableCell align="center">{row.type}</TableCell>
                                         <TableCell align="center">
-                                            <img className="mx-auto" src={sampleBottle} />
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            {row.type}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <img
+                                                className="mx-auto"
+                                                src={sampleBottle}
+                                            />
                                         </TableCell>
                                         <TableCell align="left">
-                                            <div className='flex flex-col items-center justify-center gap-y-0'>
-                                                <ToggleSwitch isDisabled={true} isChecked={row.truln as unknown as boolean} />
-                                                <CustomButton
+                                            <div className="flex flex-col items-center justify-center gap-y-0">
+                                                <ToggleSwitch
+                                                    isDisabled={true}
+                                                    isChecked={
+                                                        row.truln as unknown as boolean
+                                                    }
+                                                />
+                                                <ViewButton
                                                     className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
-                                                    btnCaption='View' btnIcon={VisibilityIcon} />
+                                                    btnCaption="View"
+                                                />
                                             </div>
-
                                         </TableCell>
-                                        <TableCell align="center">{row.orderDate}</TableCell>
                                         <TableCell align="center">
-                                            <div className='flex flex-row items-center justify-center gap-2'>
-                                                <CustomButton
-                                                    className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
-                                                    btnCaption='View' />
-                                                <CustomButton
-                                                    className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
-                                                    btnCaption='View' />
-                                            </div></TableCell>
+                                            {row.orderDate}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <div className="flex flex-row items-center justify-center gap-2">
+                                                <Button
+                                                    onClick={(event) => {
+                                                        event.stopPropagation();
+                                                    }}
+                                                    sx={{ textTransform: 'none' }}
+                                                    variant="outlined"
+                                                    size="small"
+                                                    className='!bg-[#BEE6E8] !text-[#797e7f] !border-[#797e7f] '
+                                                >
+                                                    Order Now
+                                                </Button>
+                                                <DropDown onClick={(event: React.MouseEvent<unknown>) => event.stopPropagation()} />
+                                            </div>
+                                        </TableCell>
                                     </TableRow>
                                 );
                             })}
