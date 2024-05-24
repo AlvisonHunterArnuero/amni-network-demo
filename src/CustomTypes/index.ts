@@ -34,3 +34,7 @@ export type CustomButtonProps = {
     btnHoverColor?: string;
     btnHoverBgColor?: string;
 };
+
+export interface EnhancedTableToolbarProps {
+    numSelected: number;
+}

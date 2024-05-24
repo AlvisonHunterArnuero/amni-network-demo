@@ -12,11 +12,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
@@ -27,6 +24,10 @@ import ToggleSwitch from '../ToggleSwitch';
 import Button from '@mui/material/Button';
 import ViewButton from '../ViewButton';
 import DropDown from '../DropDown';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Collapse from '@mui/material/Collapse';
+import { toast } from 'react-toastify';
 
 
 
@@ -73,7 +74,7 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 interface EnhancedTableProps {
     numSelected: number;
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
-    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onSelectAllClick?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     order: Order;
     orderBy: string;
     rowCount: number;
@@ -87,12 +88,20 @@ const StyledTableCell = styled(TableCell)(() => ({
         fontWeight: 'bold',
     },
     [`&.${tableCellClasses.body}`]: {
-        fontSize: 1,
+        fontSize: 14,
+    },
+    '&:first-of-type': {
+        borderTopLeftRadius: '16px',
+        overflow: 'hidden',
+    },
+    '&:last-of-type': {
+        borderTopRightRadius: '16px',
+        overflow: 'hidden',
     },
 }));
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    const { order, orderBy, onRequestSort } =
         props;
     const createSortHandler =
         (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
@@ -103,15 +112,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         <TableHead>
             <TableRow>
                 <StyledTableCell padding="checkbox">
-                    <Checkbox
-                        color="primary"
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{
-                            'aria-label': 'select all Medicines',
-                        }}
-                    />
+                    {" "}
                 </StyledTableCell>
                 {headCells.map((headCell) => (
                     <StyledTableCell
@@ -139,65 +140,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     );
 }
 
-interface EnhancedTableToolbarProps {
-    numSelected: number;
-}
-
-function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
-    const { numSelected } = props;
-
-    return (
-        <Toolbar
-            sx={{
-                pl: { sm: 2 },
-                pr: { xs: 1, sm: 1 },
-                ...(numSelected > 0 && {
-                    bgcolor: (theme) =>
-                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                }),
-            }}
-        >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    {" "}
-                </Typography>
-            )}
-            {numSelected > 0 ? (
-                <Tooltip title="Delete">
-                    <IconButton>
-                        <DeleteIcon />
-                    </IconButton>
-                </Tooltip>
-            ) : (
-                <Tooltip title="Filter list">
-                    <IconButton>
-                        <FilterListIcon />
-                    </IconButton>
-                </Tooltip>
-            )}
-        </Toolbar>
-    );
-}
 export default function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
-    const [selected, setSelected] = React.useState<readonly number[]>([]);
+    const [selected, setSelected] = React.useState<number>();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [open, setOpen] = React.useState(false);
 
     const handleRequestSort = (
         _event: React.MouseEvent<unknown>,
@@ -208,32 +157,9 @@ export default function EnhancedTable() {
         setOrderBy(property);
     };
 
-    const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.checked) {
-            const newSelected = rows.map((n) => n.id);
-            setSelected(newSelected);
-            return;
-        }
-        setSelected([]);
-    };
-
     const handleClick = (_event: React.MouseEvent<unknown>, id: number) => {
-        const selectedIndex = selected.indexOf(id);
-        let newSelected: readonly number[] = [];
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, id);
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1));
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1));
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(
-                selected.slice(0, selectedIndex),
-                selected.slice(selectedIndex + 1),
-            );
-        }
-        setSelected(newSelected);
+        setSelected(id);
+        setOpen(!open);
     };
 
     const handleChangePage = (_event: unknown, newPage: number) => {
@@ -245,7 +171,9 @@ export default function EnhancedTable() {
         setPage(0);
     };
 
-    const isSelected = (id: number) => selected.indexOf(id) !== -1;
+
+
+    const isSelected = (id: number) => id !== -1;
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -263,7 +191,6 @@ export default function EnhancedTable() {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2, overflow: 'hidden' }}>
-                <EnhancedTableToolbar numSelected={selected.length} />
                 <TableContainer sx={{ maxHeight: 700 }}>
                     <Table stickyHeader
                         sx={{ minWidth: 900 }}
@@ -271,10 +198,9 @@ export default function EnhancedTable() {
                         size='medium'
                     >
                         <EnhancedTableHead
-                            numSelected={selected.length}
+                            numSelected={selected as number}
                             order={order}
                             orderBy={orderBy}
-                            onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
                             rowCount={rows.length}
                         />
@@ -283,7 +209,7 @@ export default function EnhancedTable() {
                                 const isItemSelected = isSelected(row.sku as unknown as number);
                                 const labelId = `enhanced-table-checkbox-${index}`;
 
-                                return (
+                                return (<>
                                     <TableRow
                                         hover
                                         onClick={(event) =>
@@ -297,19 +223,25 @@ export default function EnhancedTable() {
                                         tabIndex={-1}
                                         key={row.sku}
                                         selected={isItemSelected}
-                                        sx={{ cursor: 'pointer' }}
+                                        sx={{
+                                            cursor: 'pointer',
+                                            '&.MuiTableRow-root.Mui-selected': {
+                                                backgroundColor: 'white'
+                                            }
+                                            }
+                                        }
                                     >
                                         <TableCell
                                             sx={{ marginLeft: '12px' }}
                                             padding="checkbox"
                                         >
-                                            <Checkbox
-                                                color="primary"
-                                                checked={isItemSelected}
-                                                inputProps={{
-                                                    'aria-labelledby': labelId,
-                                                }}
-                                            />
+                                            <IconButton
+                                                aria-label="expand row"
+                                                size="small"
+                                                onClick={() => setOpen(!open)}
+                                            >
+                                                {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                            </IconButton>
                                         </TableCell>
                                         <TableCell
                                             component="th"
@@ -352,8 +284,9 @@ export default function EnhancedTable() {
                                         <TableCell align="center">
                                             <div className="flex flex-row items-center justify-center gap-2">
                                                 <Button
-                                                    onClick={(event) => {
+                                                    onClick={(event: React.MouseEvent<unknown>) => {
                                                         event.stopPropagation();
+                                                        toast.info("Feature not yet implemented");
                                                     }}
                                                     sx={{ textTransform: 'none' }}
                                                     variant="outlined"
@@ -362,10 +295,27 @@ export default function EnhancedTable() {
                                                 >
                                                     Order Now
                                                 </Button>
-                                                <DropDown onClick={(event: React.MouseEvent<unknown>) => event.stopPropagation()} />
+                                                <DropDown />
                                             </div>
                                         </TableCell>
                                     </TableRow>
+                                    <TableRow>
+                                        <TableCell
+                                            style={{ paddingBottom: 0, paddingTop: 0 }}
+                                            colSpan={8}>
+                                            {selected === row.sku && <Collapse in={open} timeout="auto" unmountOnExit>
+                                                <Box sx={{ margin: 1 }}>
+
+                                                    <Typography variant="h6" gutterBottom component="div">
+                                                        {row.name}
+                                                    </Typography>
+                                                    <p className='text-gray-500 max-w-full'>This section is dedicated to displaying item descriptions and other relevant details for an ongoing project. It serves as a placeholder to showcase the intended content and layout, but the project is still in progress and may undergo further development and refinement.</p>
+                                                </Box>
+
+                                            </Collapse>}
+                                        </TableCell>
+
+                                    </TableRow></>
                                 );
                             })}
                             {emptyRows > 0 && (
