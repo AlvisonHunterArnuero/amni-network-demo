@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const DropDown: React.FC = () => (
     <>
@@ -9,6 +10,10 @@ const DropDown: React.FC = () => (
             font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center h-8
              dark:bg-transparent dark:hover:bg-gray-400 dark:focus:ring-gray-800"
             type="button"
+            onClick={(event: React.MouseEvent<unknown>) => {
+                event.stopPropagation();
+                toast.info("Feature not yet implemented");
+            }}
         >
             More
             <svg
@@ -53,7 +58,4 @@ const DropDown: React.FC = () => (
     </>
 );
 export default DropDown;
-
-
-
 

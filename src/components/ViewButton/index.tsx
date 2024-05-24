@@ -2,6 +2,7 @@ import React from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { toast } from 'react-toastify';
 
 export type ViewButtonProps = {
     className?: string,
@@ -25,7 +26,15 @@ const ViewButton: React.FC<ViewButtonProps> = ({
     btnSize = 'small',
     btnVariant = 'outlined',
 }) => (
-    <ColorButton className={className} size={btnSize} variant={btnVariant} endIcon={<VisibilityIcon />}>
+    <ColorButton
+        onClick={(event: React.MouseEvent<unknown>) => {
+            event.stopPropagation();
+            toast.info("Feature not yet implemented");
+        }}
+        className={className}
+        size={btnSize}
+        variant={btnVariant}
+        endIcon={<VisibilityIcon />}>
         {btnCaption}
     </ColorButton>
 );
