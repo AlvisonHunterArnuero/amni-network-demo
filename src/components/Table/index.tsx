@@ -9,13 +9,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import sampleBottle from '../../assets/bottle.png'
 import { Data } from '../../CustomTypes';
@@ -228,7 +224,7 @@ export default function EnhancedTable() {
                                             '&.MuiTableRow-root.Mui-selected': {
                                                 backgroundColor: 'white'
                                             }
-                                            }
+                                        }
                                         }
                                     >
                                         <TableCell
