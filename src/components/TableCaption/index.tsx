@@ -2,8 +2,8 @@ import React from 'react';
 import Tabs from '../Tabs';
 
 const TableCaption: React.FC = () => (
-  <div className="container mx-auto">
-    <div className="flex flex-col justify-between mt-12">
+  <div className="container">
+    <div className="flex flex-col justify-between mt-12 mx-6">
       <div className="basis-1/2">
         <h1 className="text-gray-800 text-2xl float-left">My Products</h1>
       </div>
@@ -29,7 +29,7 @@ const TableCaption: React.FC = () => (
           New SKU
         </button>
       </div>
-      <div className="w-full h-48">
+      <div className="w-full">
         <Tabs />
       </div>
     </div>
