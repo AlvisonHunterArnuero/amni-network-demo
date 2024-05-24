@@ -24,7 +24,8 @@ import sampleBottle from '../../assets/bottle.png'
 import { Data } from '../../CustomTypes';
 import { headCells, rows } from './tableData';
 import ToggleSwitch from '../ToggleSwitch';
-import ViewButton from '../ViewButton';
+import CustomButton from '../CustomButton';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 
 
@@ -323,13 +324,22 @@ export default function EnhancedTable() {
                                         <TableCell align="left">
                                             <div className='flex flex-col items-center justify-center gap-y-0'>
                                                 <ToggleSwitch isDisabled={true} isChecked={row.truln as unknown as boolean} />
-                                                <ViewButton
+                                                <CustomButton
                                                     className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
-                                                    btnCaption='View' />
+                                                    btnCaption='View' btnIcon={VisibilityIcon} />
                                             </div>
 
                                         </TableCell>
                                         <TableCell align="center">{row.orderDate}</TableCell>
+                                        <TableCell align="center">
+                                            <div className='flex flex-row items-center justify-center gap-2'>
+                                                <CustomButton
+                                                    className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
+                                                    btnCaption='View' />
+                                                <CustomButton
+                                                    className="!text-[#797e7f] !border-[#797e7f] w-20 rounded-lg text-sm"
+                                                    btnCaption='View' />
+                                            </div></TableCell>
                                     </TableRow>
                                 );
                             })}

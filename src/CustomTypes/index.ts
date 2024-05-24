@@ -1,3 +1,5 @@
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { SvgIconTypeMap } from "@mui/material";
 export interface Data {
     sku: number;
     name: string;
@@ -5,6 +7,7 @@ export interface Data {
     image: string;
     truln: boolean;
     orderDate: string;
+    actions: string;
 }
 
 export interface HeadCell {
@@ -17,4 +20,17 @@ export interface HeadCell {
 export type ToggleSwitchProps = {
     isChecked: boolean;
     isDisabled: boolean;
+};
+
+
+export type CustomButtonProps = {
+    className?: string,
+    btnCaption: string;
+    btnSize?: 'small' | 'medium' | 'large';
+    btnVariant?: 'outlined' | 'text' | 'contained';
+    btnIcon?: OverridableComponent<SvgIconTypeMap<object, "svg">> & { muiName: string };
+    btnBgColor?: string;
+    btnColor?: string;
+    btnHoverColor?: string;
+    btnHoverBgColor?: string;
 };
