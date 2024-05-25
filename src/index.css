@@ -1,4 +1,11 @@
 /* src/index.css */
+:root {
+    --primary-color: #143751;
+    --secondary-color: #BEE6E8;
+    --warm-color: #4cbac0;
+    --muted-color: #d1d5db;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
