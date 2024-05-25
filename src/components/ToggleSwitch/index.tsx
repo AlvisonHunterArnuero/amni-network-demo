@@ -1,21 +1,79 @@
 import React from 'react';
 import { ToggleSwitchProps } from '../../types';
+import { toast } from 'react-toastify';
+
+import { styled } from '@mui/material/styles';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
+
+const IOSSwitch = styled((props: SwitchProps) => (
+    <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+    width: 42,
+    height: 26,
+    padding: 0,
+    '& .MuiSwitch-switchBase': {
+        padding: 0,
+        margin: 2,
+        transitionDuration: '300ms',
+        '&.Mui-checked': {
+            transform: 'translateX(16px)',
+            color: '#fff',
+            '& + .MuiSwitch-track': {
+                backgroundColor: '#4cbac0',
+                opacity: 1,
+                border: 0,
+            },
+            '&.Mui-disabled + .MuiSwitch-track': {
+                opacity: 0.5,
+            },
+        },
+        '&.Mui-focusVisible .MuiSwitch-thumb': {
+            color: '#4cbac0',
+            border: '6px solid #fff',
+        },
+        '&.Mui-disabled .MuiSwitch-thumb': {
+            color:
+                theme.palette.mode === 'light'
+                    ? theme.palette.grey[100]
+                    : theme.palette.grey[600],
+        },
+        '&.Mui-disabled + .MuiSwitch-track': {
+            opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+        },
+    },
+    '& .MuiSwitch-thumb': {
+        boxSizing: 'border-box',
+        width: 22,
+        height: 22,
+    },
+    '& .MuiSwitch-track': {
+        borderRadius: 26 / 2,
+        backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+        opacity: 1,
+        transition: theme.transitions.create(['background-color'], {
+            duration: 500,
+        }),
+    },
+}));
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isChecked, isDisabled }) => {
-    const [checked, setChecked] = React.useState(isChecked);
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
+
+    const handleChange = (event: React.SyntheticEvent<Element, Event>) => {
+        event.stopPropagation();
+        toast.info("Feature not yet implemented.");
     };
     return (
         <label className="inline-flex items-start mb-2 cursor-pointer w-20">
-            <input
+            <FormControlLabel
+                control={<IOSSwitch sx={{ m: 1, alignItems: 'self-start' }} defaultChecked={isChecked} disabled={isDisabled} />}
+                label=""
                 onChange={handleChange}
-                type="checkbox"
-                value=""
-                className="sr-only peer"
-                checked={checked}
-                disabled={isDisabled} />
-            <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-200 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-[#4cbac0]"></div>
+            />
         </label>
     );
 }

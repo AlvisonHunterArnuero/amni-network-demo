@@ -38,3 +38,10 @@ export type CustomButtonProps = {
 export interface EnhancedTableToolbarProps {
     numSelected: number;
 }
+
+export type ViewButtonProps = {
+    className?: string,
+    btnCaption: string;
+    btnSize?: 'small' | 'medium' | 'large';
+    btnVariant?: 'outlined' | 'text' | 'contained';
+};

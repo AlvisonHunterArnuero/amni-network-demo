@@ -3,13 +3,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { toast } from 'react-toastify';
-
-export type ViewButtonProps = {
-    className?: string,
-    btnCaption: string;
-    btnSize?: 'small' | 'medium' | 'large';
-    btnVariant?: 'outlined' | 'text' | 'contained';
-};
+import { ViewButtonProps } from '../../types';
 
 const ColorButton = styled(Button)<ButtonProps>(() => ({
     color: 'black',
