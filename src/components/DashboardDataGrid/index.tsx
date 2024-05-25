@@ -19,22 +19,27 @@ const DashboardDataGrid: React.FC = () => {
                 //     toolbar: GridToolbar,
                 // }}
                 sx={{
-                    borderTopLeftRadius: '16px',
-                    borderTopRightRadius: '16px',
+                    borderTopLeftRadius: '12px',
+                    borderTopRightRadius: '12px',
                     '& .MuiDataGrid-columnHeaders': {
                         backgroundColor: '#BEE6E8',
-                        borderTopLeftRadius: '16px',
-                        borderTopRightRadius: '16px'
+                        borderTopLeftRadius: '12px',
+                        borderTopRightRadius: '12px'
                     },
-                    '& .MuiDataGrid-columnHeaderTitle': {
+                    '& .MuiDataGrid-columnHeaderTitle, & .MuiDataGrid-columnHeader': {
                         fontWeight: 'bold',
-                        color: '#797e7f'
+                        color: '#797e7f',
+                        textAlign: 'center',
+                        justifyContent: 'center',
                     },
                     '& .MuiDataGrid-cell': {
                         color: '#797e7f'
                     }, '& .MuiDataGrid-toolbarContainer .MuiButton-textPrimary': {
                         color: '#37989d'
-                    }
+                    }, '& .MuiDataGrid-columnHeader, & .MuiDataGrid-cell': {
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                    },
                 }}
             />
         </div>

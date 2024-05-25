@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToggleSwitchProps } from '../../CustomTypes';
+import { ToggleSwitchProps } from '../../types';
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({ isChecked, isDisabled }) => {
     const [checked, setChecked] = React.useState(isChecked);

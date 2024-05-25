@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import { visuallyHidden } from '@mui/utils';
 import sampleBottle from '../../assets/bottle.png'
-import { Data } from '../../CustomTypes';
+import { Data } from '../../types';
 import { headCells, rows } from './tableData';
 import ToggleSwitch from '../ToggleSwitch';
 import Button from '@mui/material/Button';
