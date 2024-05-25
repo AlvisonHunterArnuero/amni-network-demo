@@ -12,7 +12,7 @@ const DashboardDataGrid: React.FC = () => {
                 rows={rows}
                 columns={columns}
                 rowHeight={100}
-                pageSizeOptions={[5, 10, 25]}
+                pageSizeOptions={[5, 10, 25, 50, 100]}
                 pagination
 
                 slots={{
