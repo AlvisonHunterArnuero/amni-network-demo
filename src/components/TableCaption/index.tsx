@@ -3,7 +3,7 @@ import Tabs from '../Tabs';
 import { toast } from 'react-toastify';
 
 const TableCaption: React.FC = () => (
-  <div className="container">
+  <div className="w-full">
     <div className="flex flex-col justify-between mt-12 mx-6">
       <div className="basis-1/2">
         <h1 className="text-gray-800 text-2xl float-left">My Products</h1>

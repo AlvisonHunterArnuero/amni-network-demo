@@ -15,7 +15,7 @@ const mnuItems: string[] = [
 
 const Header: React.FC = () => (
     <div className="w-full h-screen flex flex-col basis-full">
-        <h1 className="text-gray-300 text-2xl my-1">Products: Column Hovers</h1>
+        <h1 className="text-muted text-2xl my-1">Products: Column Hovers</h1>
         <nav className="bg-white border-gray-200 dark:bg-[#143751]">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a title="logoAnchor"
@@ -72,9 +72,9 @@ const Header: React.FC = () => (
                     </ul>
                 </div>
                 <div className="flex gap-4">
-                    <User stroke="white" className="size-5" />
-                    <Gear stroke="white" className="size-5" />
-                    <PowerOff stroke="white" className="size-5" />
+                    <User stroke="white" className="size-5 stroke-[#d1d5db] hover:stroke-[#4cbac0] cursor-pointer" />
+                    <Gear stroke="white" className="size-5 stroke-[#d1d5db] hover:stroke-[#4cbac0] cursor-pointer" />
+                    <PowerOff stroke="white" className="size-5 stroke-[#d1d5db] hover:stroke-[#4cbac0] cursor-pointer" />
                 </div>
             </div>
         </nav>

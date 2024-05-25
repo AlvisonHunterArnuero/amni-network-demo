@@ -4,6 +4,7 @@
     --secondary-color: #BEE6E8;
     --warm-color: #4cbac0;
     --muted-color: #d1d5db;
+    --dark-color: #173755;
 }
 
 @tailwind base;

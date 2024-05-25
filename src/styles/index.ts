@@ -9,7 +9,7 @@ export const dataGridStyles = {
     },
     '& .MuiDataGrid-columnHeaderTitle, & .MuiDataGrid-columnHeader': {
         fontWeight: 'bold',
-        color: '#797e7f',
+        color: '#173755',
         textAlign: 'center',
         justifyContent: 'center',
     },

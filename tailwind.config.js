@@ -11,6 +11,7 @@ export default {
         secondary: 'var(--secondary-color)',
         warm: 'var(--warm-color)',
         muted: 'var(--muted-color)',
+        dark: 'var(--dark-color)',
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
