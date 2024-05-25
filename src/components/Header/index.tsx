@@ -18,8 +18,9 @@ const Header: React.FC = () => (
         <h1 className="text-gray-300 text-2xl my-1">Products: Column Hovers</h1>
         <nav className="bg-white border-gray-200 dark:bg-[#143751]">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a
-                    href="https://flowbite.com/"
+                <a title="logoAnchor"
+                    id="logoLink"
+                    href="https://amni.ai/amni-network/"
                     className="flex items-center space-x-3 rtl:space-x-reverse"
                 >
                     <img
