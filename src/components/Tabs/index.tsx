@@ -2,7 +2,7 @@ import React from 'react';
 
 const Tabs: React.FC = () => (
     <>
-        <div className="border-b border-gray-300">
+        <div className="mb-8 border-b border-gray-300">
             <ul
                 className="flex flex-wrap -mb-px text-sm font-medium text-center"
                 id="default-tab"
