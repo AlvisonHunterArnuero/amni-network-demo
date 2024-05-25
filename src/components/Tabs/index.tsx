@@ -2,7 +2,7 @@ import React from 'react';
 
 const Tabs: React.FC = () => (
     <>
-        <div className="mb-4 border-b border-gray-300">
+        <div className="border-b border-gray-300">
             <ul
                 className="flex flex-wrap -mb-px text-sm font-medium text-center"
                 id="default-tab"
@@ -11,7 +11,7 @@ const Tabs: React.FC = () => (
             >
                 <li className="" role="presentation">
                     <button
-                        className="inline-block py-4 border-b-2 border-gray-600 rounded-t-lg hover:border-gray-800"
+                        className="inline-block py-4 hover:border-b-4 rounded-t-lg hover:border-gray-800"
                         id="profile-tab"
                         data-tabs-target="#profile"
                         type="button"
@@ -24,7 +24,7 @@ const Tabs: React.FC = () => (
                 </li>
                 <li className="" role="presentation">
                     <button
-                        className="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-700"
+                        className="inline-block p-4 hover:border-b-4 rounded-t-lg  hover:border-gray-800"
                         id="dashboard-tab"
                         data-tabs-target="#dashboard"
                         type="button"

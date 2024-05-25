@@ -1,4 +1,4 @@
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 import { columns, rows } from './DataGridRowColData';
 
@@ -14,10 +14,10 @@ const DashboardDataGrid: React.FC = () => {
                 rowHeight={100}
                 pageSizeOptions={[5, 10, 25]}
                 pagination
-                autoPageSize
-                // slots={{
-                //     toolbar: GridToolbar,
-                // }}
+
+                slots={{
+                    toolbar: GridToolbar,
+                }}
                 sx={{
                     '& .MuiDataGrid-columnHeaders': {
                         backgroundColor: '#BEE6E8',
