@@ -5,32 +5,34 @@ import { toast } from 'react-toastify';
 import ViewButton from '../ViewButton/index';
 
 vi.mock('react-toastify', () => ({
-    toast: {
-        info: vi.fn(),
-    },
+  toast: {
+    info: vi.fn(),
+  },
 }));
 
 describe('ViewButton component', () => {
-    it('renders with default props', () => {
-        render(<ViewButton btnCaption="View" />);
+  it('renders with default props', () => {
+    render(<ViewButton btnCaption="View" />);
 
-        const buttonElement = screen.getByRole('button', { name: /view/i });
-        expect(buttonElement).toBeInTheDocument();
-    });
+    const buttonElement = screen.getByRole('button', { name: /view/i });
+    expect(buttonElement).toBeInTheDocument();
+  });
 
-    it('renders with provided props', () => {
-        render(<ViewButton btnCaption="Check" btnSize="large" btnVariant="contained" />);
+  it('renders with provided props', () => {
+    render(
+      <ViewButton btnCaption="Check" btnSize="large" btnVariant="contained" />,
+    );
 
-        const buttonElement = screen.getByRole('button', { name: /check/i });
-        expect(buttonElement).toHaveClass('MuiButton-contained');
-    });
+    const buttonElement = screen.getByRole('button', { name: /check/i });
+    expect(buttonElement).toHaveClass('MuiButton-contained');
+  });
 
-    it('calls toast.info on click', () => {
-        render(<ViewButton btnCaption="View" />);
+  it('calls toast.info on click', () => {
+    render(<ViewButton btnCaption="View" />);
 
-        const buttonElement = screen.getByRole('button', { name: /view/i });
-        fireEvent.click(buttonElement);
+    const buttonElement = screen.getByRole('button', { name: /view/i });
+    fireEvent.click(buttonElement);
 
-        expect(toast.info).toHaveBeenCalledWith("Feature not yet implemented");
-    });
+    expect(toast.info).toHaveBeenCalledWith('Feature not yet implemented');
+  });
 });

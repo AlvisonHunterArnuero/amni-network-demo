@@ -1,10 +1,10 @@
 /* src/index.css */
 :root {
-    --primary-color: #143751;
-    --secondary-color: #BEE6E8;
-    --warm-color: #4cbac0;
-    --muted-color: #d1d5db;
-    --dark-color: #173755;
+  --primary-color: #143751;
+  --secondary-color: #bee6e8;
+  --warm-color: #4cbac0;
+  --muted-color: #d1d5db;
+  --dark-color: #173755;
 }
 
 @tailwind base;

@@ -8,7 +8,7 @@ const TableCaption: React.FC = () => (
       <div className="basis-1/2">
         <h1 className="text-gray-800 text-2xl float-left">My Products</h1>
         <button
-          onClick={() => toast.info("Feature under development")}
+          onClick={() => toast.info('Feature under development')}
           type="button"
           className="float-end rounded p-2 px-3 text-sm text-[#143751] bg-[#BEE6E8] hover:text-white hover:bg-[#143751] flex items-center justify-center space-x-2"
         >

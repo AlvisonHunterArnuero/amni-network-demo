@@ -5,14 +5,19 @@ import DashboardDataGrid from './index';
 
 // Mock DashboardDataGrid
 vi.mock('../DashboardDataGrid', () => ({
-    default: () => <ul><li>Trulnsights</li><li>SKU</li></ul>,
+  default: () => (
+    <ul>
+      <li>Trulnsights</li>
+      <li>SKU</li>
+    </ul>
+  ),
 }));
 
 describe('Testing DashboardDataGrid component', () => {
-    it('renders our DataGrid Component', () => {
-        render(<DashboardDataGrid />);
+  it('renders our DataGrid Component', () => {
+    render(<DashboardDataGrid />);
 
-        expect(screen.getByText('Trulnsights')).toBeInTheDocument();
-        expect(screen.getByText('SKU')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Trulnsights')).toBeInTheDocument();
+    expect(screen.getByText('SKU')).toBeInTheDocument();
+  });
 });

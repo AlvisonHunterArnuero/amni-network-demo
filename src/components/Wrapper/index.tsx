@@ -1,7 +1,7 @@
 import React from 'react';
-import DashboardDataGrid from "../DashboardDataGrid";
-import Header from "../Header";
-import TableCaption from "../TableCaption";
+import DashboardDataGrid from '../DashboardDataGrid';
+import Header from '../Header';
+import TableCaption from '../TableCaption';
 
 const Wrapper: React.FC = () => {
   return (
@@ -11,6 +11,6 @@ const Wrapper: React.FC = () => {
       <DashboardDataGrid />
     </div>
   );
-}
+};
 
 export default Wrapper;

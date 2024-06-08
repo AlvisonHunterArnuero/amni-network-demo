@@ -6,23 +6,23 @@ import Wrapper from './index';
 
 // Mock the child components for Wrapper
 vi.mock('../Header', () => ({
-    default: () => <div>Manufacturers</div>,
+  default: () => <div>Manufacturers</div>,
 }));
 
 vi.mock('../TableCaption', () => ({
-    default: () => <div>My Products</div>,
+  default: () => <div>My Products</div>,
 }));
 
 vi.mock('../DashboardDataGrid', () => ({
-    default: () => <div>Last Order Date</div>,
+  default: () => <div>Last Order Date</div>,
 }));
 
 describe('Testing Wrapper component', () => {
-    it('renders Header, TableCaption, & DashboardDataGrid components', () => {
-        render(<Wrapper />);
+  it('renders Header, TableCaption, & DashboardDataGrid components', () => {
+    render(<Wrapper />);
 
-        expect(screen.getByText('Manufacturers')).toBeInTheDocument();
-        expect(screen.getByText('My Products')).toBeInTheDocument();
-        expect(screen.getByText('Last Order Date')).toBeInTheDocument();
-    });
+    expect(screen.getByText('Manufacturers')).toBeInTheDocument();
+    expect(screen.getByText('My Products')).toBeInTheDocument();
+    expect(screen.getByText('Last Order Date')).toBeInTheDocument();
+  });
 });
